@@ -33,8 +33,11 @@ export const WrapperResult = styled.div`
 `;
 
 export const WrapperFooter = styled.div`
-  background-color: lightgreen;
+  width: 100%;
+  align-self: flex-end;
+  border-top: 1px solid palevioletred;
   padding: 5px 0 0 5px;
+  overflow-x: scroll;
   
 `;
 
