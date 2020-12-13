@@ -4,11 +4,13 @@ import GlobalStyle from './styles/globalStyles';
 import { 
   Container,
   WrapperBox,
+  WrapperInput,
+  WrapperResult,
+  WrapperFooter,
   Button, 
   Input,
-  Zeta as Z,
   Text,
-  WrapperInput
+  Soma
 } from './styles/components/styles';
 
 
@@ -16,6 +18,12 @@ import {
 function App() {
   const [numero, setNumero] = useState(0);
   const [zeta, setZeta] = useState([]);
+  
+  function handleSubmit (e){
+    e.preventDefault();
+    calculaZeta(numero);
+  }
+
   function fibonacci(numero){
     let fibonacci = 1;
     let fibonacci2 = 0
@@ -28,19 +36,24 @@ function App() {
     return fibonacci2;
   }
 
-    function calculaZeta(numero){
+  function calculaZeta(numero, array){  
     const fibo = fibonacci(numero);
-
-    setZeta(Zeta => [...Zeta, fibo])
+    const listaNumeros = array ? array : [];
+    
+    listaNumeros.push(fibo)
+    
     
     console.log(`${numero} - ${fibo}`);
     let novoNumero = numero - fibo;
     console.log('novoNumero: '+ novoNumero)
-
     
-    if(novoNumero !== 0){
-      calculaZeta(novoNumero)
+    
+    if(novoNumero === 0){
+      console.log('Fim')
+      console.log(listaNumeros);
+      return setZeta(listaNumeros) 
     }
+    calculaZeta(novoNumero, listaNumeros)
   }
 
   return (
@@ -49,10 +62,24 @@ function App() {
       <Container>
         <WrapperBox>  
           <Text>Número zeta</Text>
-          <WrapperInput>
+          <WrapperInput onSubmit={event => handleSubmit(event)}>
             <Input onChange={event => setNumero(event.target.value)} type='number' min= '0' title='Apenas números'/>
-            <Button onClick={() => calculaZeta(numero)}>Executar</Button>
+            <Button>Executar</Button>
+            
           </WrapperInput>
+
+          <WrapperResult>
+            <Text>&zeta; = 
+              <Text resultado as='span'> {zeta.length}</Text>
+            </Text>
+
+            <Soma>
+              Numeros: {zeta.map((numero, i, array) => i+1 < array.length ? numero + ' + ' : numero )}
+            </Soma>
+          </WrapperResult>
+          <WrapperFooter>
+            {zeta.length}
+          </WrapperFooter>
         </WrapperBox>
       </Container>
     </>
@@ -60,3 +87,4 @@ function App() {
 }
 
 export default App;
+

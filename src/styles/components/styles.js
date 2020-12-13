@@ -11,6 +11,7 @@ export const Container = styled.div`
 
 export const WrapperBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 
@@ -22,10 +23,29 @@ export const WrapperBox = styled.div`
   flex-wrap: wrap;
 `;
 
-export const WrapperInput = styled.div``;
+export const WrapperInput = styled.form``;
+
+export const WrapperResult = styled.div`
+  display:flex;
+  flex-direction: column;
+  margin-top: 10px;
+
+`;
+
+export const WrapperFooter = styled.div`
+  background-color: lightgreen;
+  padding: 5px 0 0 5px;
+  
+`;
 
 export const Text = styled.h3`
+  color: ${props => props.resultado ? "palevioletred" : "black" };
+  padding: 5px 0 5px 0;
+  
+`;
 
+export const Soma = styled(Text)`
+  font-size: 12px;
 `;
 
 export const Button = styled.button`
@@ -52,7 +72,6 @@ export const Input = styled.input`
   padding: 0 1em;
 
   :invalid {
-    
     border: 1px solid red;
   }
 `;
