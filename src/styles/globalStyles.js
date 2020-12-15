@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    font-family: 'Press Start 2P', 'Ubuntu Mono', monospace;
+    font-family: 'Press Start 2P', Ubuntu Mono, monospace;
   }
 `;
 

@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
-import GlobalStyle from './styles/globalStyles';
+
+import Header from './components/Header';
+
+import Content from './components/Content';
+
+import Footer from './components/Footer';
 
 import { 
-  Container,
-  WrapperBox,
-  WrapperInput,
-  WrapperResult,
-  WrapperFooter,
-  Button, 
-  Input,
-  Text,
-  Soma
+  Container
 } from './styles/components/styles';
-
-
 
 function App() {
   const [numero, setNumero] = useState(0);
   const [zeta, setZeta] = useState([]);
   const [ListaZetas, setListaZetas] = useState([]);
+
+  const inputEvent = event => setNumero(event.target.value);
   
   function handleSubmit (e){
     e.preventDefault();
@@ -58,32 +55,11 @@ function App() {
   }
 
   return (
-    <>
-      <GlobalStyle />
       <Container>
-        <WrapperBox>  
-          <Text>Número zeta</Text>
-          <WrapperInput onSubmit={event => handleSubmit(event)}>
-            <Input onChange={event => setNumero(event.target.value)} type='number' min= '0' title='Apenas números'/>
-            <Button>Executar</Button>
-            
-          </WrapperInput>
-
-          <WrapperResult>
-            <Text>&zeta; = 
-              <Text resultado as='span'> {zeta.length}</Text>
-            </Text>
-
-            <Soma>
-              Numeros: {zeta.map((numero, i, array) => i+1 < array.length ? numero + ' + ' : numero )}
-            </Soma>
-          </WrapperResult>
-          <WrapperFooter>
-            {ListaZetas.map((numero, i, array) => i+1 < array.length ? numero + ',' : numero )}
-          </WrapperFooter>
-        </WrapperBox>
+          <Header title='Número Zeta - Arthur Biasibetti Farias' />
+          <Content zeta={zeta} formEvent={handleSubmit} inputEvent= {inputEvent}/>
+          <Footer lista={ListaZetas} />
       </Container>
-    </>
   );
 }
 
