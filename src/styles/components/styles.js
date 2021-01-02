@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const Text = styled.h3`
   font-size: 16px;
   color: ${props => props.resultado ? "palevioletred" : "black" };
-  padding: 5px 0 5px 0;
+  padding: 5px 0 5px 10px;
 `;
 
 
